@@ -1,0 +1,10 @@
+.footer {
+  background: rgba(19, 42, 47, 0.96);
+  color: #f8f3eb;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer a {
+  color: #dcff1e;
+}

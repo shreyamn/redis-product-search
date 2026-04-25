@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Vector OS",
+            "type": "debugpy",
+            "cwd": "${workspaceFolder}/backend/",
+            "env": {
+                "PYTHONPATH": "${cwd}",
+                "REDIS_HOST": "localhost"
+            },
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "vector_os.main:app",
+                "--port=8888",
+                "--reload"
+            ],
+            "jinja": true
+        }
+    ]
+}

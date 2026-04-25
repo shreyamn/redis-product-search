@@ -1,0 +1,14 @@
+{
+  "name": "Vector OS",
+  "short_name": "VectorOS",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#132a2f",
+  "background_color": "#f5efe3",
+  "display": "standalone"
+}
