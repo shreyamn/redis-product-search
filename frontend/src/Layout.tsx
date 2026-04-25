@@ -11,7 +11,7 @@ export const Layout: FC = () => {
   const [total, setTotal] = useState<number>(0);
 
   return (
-    <div className="vector-os-shell">
+    <div className="product-search-shell">
       <Header />
       <Home
         products={products}

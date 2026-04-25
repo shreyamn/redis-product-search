@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "vector-os"
+name = "redis-product-search"
 version = "1.0.0"
-description = "Vector OS is a campus-friendly catalog exploration app built on FastAPI, React, and Redis vector search."
-authors = ["Vector OS Team"]
+description = "A full-stack product discovery application built with FastAPI, React, and Redis vector search."
+authors = ["shreyamn"]
 readme = "README.md"
 package-mode = false
 

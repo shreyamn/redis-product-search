@@ -1,8 +1,8 @@
 from vector_os.oslayer import runtime_profile
 
 DATA_SOURCE_URL = "https://redis-product-search.s3.us-east-2.amazonaws.com/products.json"
-PROJECT_NAME = "Vector OS"
-CATALOG_INDEX_NAME = "vector_os_catalog"
+PROJECT_NAME = "Redis Product Search"
+CATALOG_INDEX_NAME = "redis_product_catalog"
 RETURN_FIELDS = [
     "product_id",
     "name",

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Chip from '@mui/material/Chip';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -18,28 +18,32 @@ interface Props {
 }
 
 export const Home = (props: Props) => {
+  const initialProps = useRef(props);
+
   useEffect(() => {
+    const currentProps = initialProps.current;
+
     resetPagination();
-    props.setGender('');
-    props.setCategory('');
-    void queryProducts(props, '', '');
+    currentProps.setGender('');
+    currentProps.setCategory('');
+    void queryProducts(currentProps, '', '');
   }, []);
 
   return (
-    <main role="main" className="vector-os-home">
+    <main role="main" className="product-search-home">
       <section className="hero-panel">
         <div className="container hero-grid">
           <div>
-            <p className="hero-eyebrow">Local semantic operating layer</p>
-            <h1 className="jumbotron-heading">Vector OS</h1>
+            <p className="hero-eyebrow">Redis vector search demo</p>
+            <h1 className="jumbotron-heading">Redis Product Search</h1>
             <p className="lead hero-copy">
-              Vector OS keeps the original catalog retrieval workflow, but wraps it in a cleaner operating layer
-              for browsing, filtering, and comparing visually or semantically related products.
+              Explore a product catalog with semantic retrieval powered by Redis, FastAPI, and React.
+              Browse inventory, filter by attributes, and find visually or textually similar products.
             </p>
           </div>
           <div className="hero-note">
             <p>Mode</p>
-            <strong>Catalog Explorer</strong>
+            <strong>Semantic Catalog</strong>
             <span>{props.total} indexed items ready for lookup</span>
           </div>
         </div>
@@ -57,7 +61,7 @@ export const Home = (props: Props) => {
             />
           ) : null}
           <Tooltip title="Load the next catalog slice" arrow>
-            <button className="vector-os-button" onClick={() => void queryProductsWithLimit(props)}>
+            <button className="product-search-button" onClick={() => void queryProductsWithLimit(props)}>
               Load More
             </button>
           </Tooltip>

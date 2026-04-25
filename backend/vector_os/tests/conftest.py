@@ -7,6 +7,7 @@ import pytest
 import pytest_asyncio
 from asgi_lifespan import LifespanManager
 from httpx import AsyncClient
+from redis import Redis
 from redisvl.index import SearchIndex
 
 from vector_os import config
@@ -16,6 +17,7 @@ from vector_os.main import app
 
 @pytest.fixture(scope="session")
 def index():
+    Redis.from_url(config.REDIS_URL).flushdb()
     index = SearchIndex(schema=get_schema(), redis_url=config.REDIS_URL)
     index.create(overwrite=True)
     yield index

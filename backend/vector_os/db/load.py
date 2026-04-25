@@ -55,7 +55,7 @@ async def load_data():
         return
 
     await index.create(overwrite=True)
-    print("Preparing Vector OS catalog data")
+    print("Preparing product catalog data")
     products = read_product_json_vectors()
     print("Loading catalog entries into Redis")
     await write_products(index, products)

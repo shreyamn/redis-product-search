@@ -1,47 +1,74 @@
-# Vector OS
+# Redis Product Search
 
-Vector OS is a local-first catalog exploration project built for running on your own machine. It keeps the original strengths of the repository, including vector similarity search by image and by text, but reshapes the project into a more structured FastAPI + React application with an explicit OS abstraction layer.
+Redis Product Search is a full-stack semantic search application for browsing and discovering retail products. It combines a FastAPI backend, a React frontend, and Redis vector search to support category filtering, image similarity search, and text-based product recommendations.
 
-## What changed
+## Features
 
-- Renamed the project identity to `Vector OS`
-- Reorganized the backend package from `productsearch` to `vector_os`
-- Added `backend/vector_os/oslayer/runtime.py` as the operating-system abstraction layer for environment values, file paths, build paths, schema paths, and runtime defaults
-- Split catalog logic into a service layer in `backend/vector_os/services/catalog_service.py`
-- Renamed the public API route from `/api/v1/product` to `/api/v1/catalog`
-- Updated the frontend copy and styling to match the new project identity
-- Kept the core functionality: list items, filter by category/gender, find similar items by image, and find similar items by text
+- Product catalog browsing with pagination
+- Filters for gender and product category
+- Image-based similarity search using stored image embeddings
+- Text-based similarity search using product text embeddings
+- Redis-backed vector index for fast nearest-neighbor lookup
+- FastAPI service with interactive API documentation
+- React single-page frontend for local exploration
 
-## Project structure
+## Tech Stack
+
+- Backend: FastAPI, Python, RedisVL
+- Frontend: React, TypeScript, Material UI
+- Database: Redis with vector search support
+- Tooling: Poetry, Docker Compose, npm
+
+## Project Structure
 
 ```text
-/backend
-  /vector_os
-    /api
-    /db
-    /oslayer
-    /services
-    /tests
-    main.py
-/frontend
-  /src
-  /public
-/data
+.
+|-- backend/
+|   |-- vector_os/
+|   |   |-- api/
+|   |   |-- db/
+|   |   |-- oslayer/
+|   |   |-- services/
+|   |   `-- tests/
+|   |-- pyproject.toml
+|   `-- poetry.lock
+|-- frontend/
+|   |-- public/
+|   |-- src/
+|   `-- package.json
+|-- data/
+|-- docker-local-redis.yml
+`-- README.md
 ```
 
-## Local run
+## Getting Started
 
-### 1. Start Redis locally
+### Prerequisites
 
-You need a Redis instance with vector search support running on `localhost:6379`.
+- Python 3.11+
+- Poetry
+- Node.js and npm
+- Docker Desktop, or another Redis Stack-compatible Redis instance
 
-If you already have Docker installed, the simplest option is:
+### 1. Start Redis
 
 ```bash
-docker compose -f docker-local-redis.yml up
+docker compose -f docker-local-redis.yml up -d
 ```
 
-### 2. Run the backend
+Redis is expected at `localhost:6379`.
+
+### 2. Configure Environment
+
+Create a local `.env` file from the template if needed:
+
+```bash
+cp .env.template .env
+```
+
+Default values are suitable for local Docker-based development.
+
+### 3. Install and Load the Backend
 
 ```bash
 cd backend
@@ -50,10 +77,12 @@ poetry run load
 poetry run start
 ```
 
-Backend URL: [http://localhost:8888](http://localhost:8888)
+Backend URL: [http://localhost:8888](http://localhost:8888)  
 API docs: [http://localhost:8888/api/docs](http://localhost:8888/api/docs)
 
-### 3. Run the frontend
+### 4. Run the Frontend
+
+In a second terminal:
 
 ```bash
 cd frontend
@@ -63,17 +92,29 @@ npm start
 
 Frontend URL: [http://localhost:3000](http://localhost:3000)
 
-## Core features
+## API
 
-- Catalog browsing with pagination
-- Filtering by gender and category
-- Image-based similarity lookup
-- Text-vector similarity lookup
-- Single-page frontend served by React
-- FastAPI backend ready for local development
+The frontend uses the catalog API under:
 
-## Notes
+```text
+/api/v1/catalog/
+```
 
-- The backend expects the dataset at `data/products.json`. If that file is missing, the loader falls back to the remote seed source.
-- The UI talks to the backend through `/api/v1/catalog/`.
-- The OS abstraction layer lives in [backend/vector_os/oslayer/runtime.py](backend/vector_os/oslayer/runtime.py) and centralizes runtime-dependent paths and environment defaults.
+The API supports listing products, filtering catalog results, and retrieving similar products from image or text vectors.
+
+## Data
+
+The loader expects product data at:
+
+```text
+data/products.json
+```
+
+If the local dataset is not present, the loader downloads the seed dataset configured in the backend.
+
+## Development Notes
+
+- Runtime paths and environment defaults are centralized in `backend/vector_os/oslayer/runtime.py`.
+- Catalog query behavior lives in `backend/vector_os/services/catalog_service.py`.
+- Redis index schema is defined in `backend/vector_os/db/schema/products.yml`.
+- Generated logs, local environment files, build output, and dependency folders are intentionally ignored.

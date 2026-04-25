@@ -9,8 +9,8 @@ export const Header = () => {
         <div className="header-brand">
           <div className="header-badge">VO</div>
           <div>
-            <p className="header-kicker">Vector OS</p>
-            <h2 className="header-title">Adaptive catalog intelligence</h2>
+            <p className="header-kicker">Redis Product Search</p>
+            <h2 className="header-title">Semantic catalog discovery</h2>
           </div>
         </div>
         <div className="cta-nav">
@@ -21,7 +21,7 @@ export const Header = () => {
           </Tooltip>
           <Tooltip title="Local project contact" arrow>
             <a className="header-cta" href={`mailto:${EMAIL}`}>
-              Contact Team
+              Contact
             </a>
           </Tooltip>
         </div>

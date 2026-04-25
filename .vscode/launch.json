@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Vector OS",
+            "name": "Python Debugger: Redis Product Search",
             "type": "debugpy",
             "cwd": "${workspaceFolder}/backend/",
             "env": {

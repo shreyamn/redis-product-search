@@ -1,6 +1,6 @@
 {
-  "name": "Vector OS",
-  "short_name": "VectorOS",
+  "name": "Redis Product Search",
+  "short_name": "Product Search",
   "icons": [
     {
       "src": "/favicon.ico",

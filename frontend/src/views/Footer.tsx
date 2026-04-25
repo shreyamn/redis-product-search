@@ -5,7 +5,7 @@ export const Footer = () => {
   return (
     <footer>
       <div className='footer'>
-        <div>Vector OS is a local-first academic project for exploring vector-based catalog retrieval.</div>
+        <div>Redis Product Search is a local demo for vector-based product discovery.</div>
         <div>
           <a href='/api/docs'>Backend API</a>
           <span> | </span>
